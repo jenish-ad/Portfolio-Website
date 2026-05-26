@@ -1,36 +1,39 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useMemo, useState, useEffect } from "react";
 
 export default function IntroAnimation({ onFinish }) {
   const greetings = useMemo(
     () => [
-      "Hello",
       "नमस्ते",
+      "Bonjour",
       "Hola",
       "Hallo",
-      "Ciao",
       "Olá",
       "Hej",
       "Salam",
       "Merhaba",
       "こんにちは",
       "안녕하세요",
-      "Bonjour",
+      "Ciao",
+      "Hello",
     ],
     [],
   );
-  const [index, setIndex] = React.useState(0);
-  const [visible, setVisible] = React.useState(true);
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     if (index < greetings.length - 1) {
-      const id = setInterval(() => setIndex((i) => (i = i + 1)), 180);
+      const id = setInterval(() => setIndex((i) => i + 1), 180);
       return () => clearInterval(id);
     } else {
       const t = setTimeout(() => setVisible(false), 430);
       return () => clearTimeout(t);
     }
   }, [index, greetings.length]);
+
   return (
     <AnimatePresence onExitComplete={onFinish}>
       {visible && (
@@ -38,7 +41,7 @@ export default function IntroAnimation({ onFinish }) {
           className="fixed inset-0 z-[9999] flex justify-center items-center bg-black text-white overflow-hidden"
           initial={{ y: 0 }}
           exit={{
-            u: "-100%",
+            y: "-100%",
             transition: {
               duration: 1.05,
               ease: [0.22, 1, 0.36, 1],
@@ -47,7 +50,7 @@ export default function IntroAnimation({ onFinish }) {
         >
           <motion.h1
             key={index}
-            className="text-5xl md:text-7xl lg:test-8xl font-bold"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
