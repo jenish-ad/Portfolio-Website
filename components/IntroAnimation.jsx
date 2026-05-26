@@ -8,14 +8,8 @@ export default function IntroAnimation({ onFinish }) {
     () => [
       "नमस्ते",
       "Bonjour",
-      "Hola",
-      "Hallo",
       "Olá",
-      "Hej",
       "Salam",
-      "Merhaba",
-      "こんにちは",
-      "안녕하세요",
       "Ciao",
       "Hello",
     ],
@@ -26,7 +20,7 @@ export default function IntroAnimation({ onFinish }) {
 
   useEffect(() => {
     if (index < greetings.length - 1) {
-      const id = setInterval(() => setIndex((i) => i + 1), 180);
+      const id = setInterval(() => setIndex((i) => i + 1), 250);
       return () => clearInterval(id);
     } else {
       const t = setTimeout(() => setVisible(false), 430);
