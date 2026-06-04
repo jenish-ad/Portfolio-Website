@@ -9,23 +9,27 @@ export default function Home() {
 
   return (
     <>
-      {!introFinished && (
+      {/* {!introFinished && (
         <IntroAnimation onFinish={() => setIntroFinished(true)} />
-      )}
+      )} */}
 
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between px-10 py-5 text-white">
         <div className="text-2xl font-bold tracking-[-0.08em]">
           JENISH ADHIKARI
         </div>
 
-        <div className="flex items-center gap-8">
-          <div className="flex items-center gap-3 text-xs tracking-widest text-white/70">
-            <a>01/HOME</a>
-            <a>02/PROJECTS</a>
-            <a>03/CONTACT</a>
+        <div className="flex items-center gap-10 cursor-pointer">
+          <div className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.18em] text-white/55">
+            <a className="transition-colors hover:text-[#ff4d00]">01 / About</a>
+            <a className="transition-colors hover:text-[#ff4d00]">
+              02 / Projects
+            </a>
+            <a className="transition-colors hover:text-[#ff4d00]">
+              03 / Contact
+            </a>
           </div>
 
-          <button className="border border-[#ff4d00]/30 px-5 py-2 text-xs tracking-widest text-[#ff4d00]">
+          <button className="border border-[#ff4d00]/30 px-5 py-2 text-xs cursor-pointer tracking-widest text-[#ff4d00]">
             _RESUME_
           </button>
         </div>
@@ -45,7 +49,7 @@ export default function Home() {
             </h1>
           </div>
 
-          <div className="relative h-[625px] w-[30%] self-center overflow-hidden border border-[#ff4d00]/30 bg-white/5 p-2">
+          <div className="relative h-[625px] w-[30%] self-center overflow-hidden">
             <div className="relative h-full w-full overflow-hidden border border-white/10">
               <Image
                 src="/Jenish.png"
