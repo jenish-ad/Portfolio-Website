@@ -1,14 +1,15 @@
 import "./globals.css";
+import Navbar from "@/components/Navbar.jsx"
 
 export const metadata = {
-  title: "Jenish Portfolio",
+  title: "Jenish",
   description: "Personal portfolio website",
 };
 
 export default function RootLayout({ children}) {
   return (
-    <html lang="en" className="min-h-full">
-      <body className="min-h-screen flex flex-col">
+    <html>
+      <body>
         {children}
       </body>
     </html>
