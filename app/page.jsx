@@ -9,9 +9,9 @@ export default function Home() {
 
   return (
     <>
-      {/* {!introFinished && (
+      {!introFinished && (
         <IntroAnimation onFinish={() => setIntroFinished(true)} />
-      )} */}
+      )}
 
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between px-10 py-5 text-white">
         <div className="text-2xl font-bold tracking-[-0.08em]">
