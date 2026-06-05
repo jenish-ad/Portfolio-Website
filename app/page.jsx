@@ -89,7 +89,7 @@ export default function Home() {
           <div className="relative z-0 mt-10 h-[420px] w-full overflow-hidden md:absolute md:right-10 md:top-[54%] md:mt-0 md:h-[750px] md:w-[360px] md:-translate-y-1/2">
             <div className="relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
               <Image
-                src="/Image.png"
+                src="/image.png"
                 alt="Jenish portrait"
                 fill
                 sizes="(max-width: 768px) 100vw, 360px"
