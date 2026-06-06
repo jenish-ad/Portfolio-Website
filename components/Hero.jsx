@@ -59,7 +59,7 @@ export default function Hero() {
         <div className="absolute right-10 top-[56%] h-[700px] w-[360px] -translate-y-1/2 overflow-hidden">
           <div className="relative h-full w-full overflow-hidden">
             <Image
-              src="/Image.png"
+              src="/image.png"
               alt="Jenish portrait"
               fill
               sizes="360px"
