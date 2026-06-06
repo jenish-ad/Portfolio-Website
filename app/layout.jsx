@@ -6,11 +6,13 @@ export const metadata = {
   description: "Personal portfolio website",
 };
 
-export default function RootLayout({ children}) {
+export default function RootLayout({ children }) {
   return (
-    <html>
+    <html lang="en">
       <body>
-        {children}
+        <main className="min-h-screen bg-black bg-[radial-gradient(circle_at_75%_45%,rgba(255,77,0,0.22),transparent_35%)]">
+          {children}
+        </main>
       </body>
     </html>
   );
