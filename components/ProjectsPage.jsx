@@ -7,36 +7,54 @@ const projects = [
     title: "Credit Risk Analyser",
     image: "/projects/project-1.png",
     github: "https://github.com/jenish-ad/Credit-score-risk-analysis.git",
+    description:
+      "A credit risk analysis system designed to help users understand their credit score, risk level, and financial health through a clean dashboard. The project focuses on turning complex financial indicators into simple visual insights, making it easier for users to track risk, review score factors, and make more confident financial decisions.",
+    techStack: ["React", "Tailwind CSS", "JavaScript", "AI/ML"],
     position: "left-[0px] top-[0px]",
   },
   {
     title: "NEPSAY",
     image: "/projects/project-2.png",
     github: "https://github.com/jenish-ad/Nepsay.git",
+    description:
+      "A Nepal stock market data system built to collect, process, and organize financial market information. It handles market prices, corporate actions, dividends, rights shares, and historical records, making the data easier to analyze and use for future stock screening, indicators, and recommendation features.",
+    techStack: ["Python", "PostgreSQL", "Pandas", "Automation"],
     position: "left-[180px] top-[100px]",
   },
   {
     title: "E-KYC",
     image: "/projects/project-3.png",
     github: "https://github.com/jenish-ad/E-KYC.git",
+    description:
+      "An identity verification platform focused on simplifying the digital onboarding process. The system supports document validation, OCR-based detail extraction, face verification, and liveness-style checks, helping create a smoother and more secure flow for verifying users online.",
+    techStack: ["React", "Tailwind CSS", "OCR", "Face Verification"],
     position: "left-[360px] top-[185px]",
   },
   {
     title: "Movie Recommender",
     image: "/projects/project-4.png",
     github: "https://github.com/jenish-ad/Movie-recommendation-system.git",
+    description:
+      "A movie recommendation system built to suggest relevant films based on user preferences and similarity patterns. The project explores how machine learning can improve content discovery by comparing movie features, matching interests, and generating personalized recommendations in a simple user-friendly way.",
+    techStack: ["Python", "Machine Learning", "Pandas", "Scikit-learn"],
     position: "left-[0px] top-[330px]",
   },
   {
-    title: "My Pasal",
+    title: "Libraa",
     image: "/projects/project-5.png",
-    github: "https://github.com/jenish-ad/My-pasal.git",
+    github: "https://github.com/jenish-ad/libraa.git",
+    description:
+      "A modern web application concept focused on clean interface design, structured content, and smooth user experience. The project helped me practice building visually balanced layouts, reusable frontend sections, and a polished presentation style suitable for real-world web products.",
+    techStack: ["React", "Tailwind CSS", "JavaScript", "UI Design"],
     position: "left-[180px] top-[430px]",
   },
   {
     title: "Quizzy",
     image: "/projects/project-6.png",
     github: "https://github.com/jenish-ad/Quizzy.git",
+    description:
+      "An interactive quiz application designed to make question practice simple and engaging. It includes a clean question flow, answer selection, score tracking, and instant feedback-style interaction, helping users test their knowledge while giving me practice with frontend logic and state handling.",
+    techStack: ["HTML", "CSS", "JavaScript", "Frontend"],
     position: "left-[360px] top-[520px]",
   },
 ];
@@ -88,21 +106,46 @@ export default function ProjectsPage() {
         <div className="absolute right-0 top-0 h-full w-[600px] overflow-visible">
           <div className="sticky top-25 h-[700px] w-full overflow-hidden border border-white/10 bg-white/5">
             {activeProject ? (
-              <>
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.title}
-                  className="h-auto w-auto object-cover"
-                />
+              <div className="flex h-full flex-col">
+                <div className="h-[360px] w-full overflow-hidden bg-white">
+                  <img
+                    src={activeProject.image}
+                    alt={activeProject.title}
+                    className="h-full w-full object-cover object-left"
+                  />
+                </div>
 
-                <div className="absolute bottom-0 left-0 w-full bg-black/40 px-6 py-5 backdrop-blur-sm">
-                  <h2 className="mt-2 text-2xl font-bold uppercase tracking-[-0.04em] text-white">
+                <div>
+                  <h2 className="text-4xl font-black uppercase leading-none tracking-[-0.06em] text-white">
                     {activeProject.title}
                   </h2>
+
+                  <div className="mt-5 h-px w-20 bg-[#c6ff00]/60" />
+
+                  <p className="mt-6 max-w-xl text-[15px] font-medium leading-7 text-white/60">
+                    {activeProject.description}
+                  </p>
+
+                  <div className="mt-7">
+                    <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.26em] text-white/35">
+                      Tech Stack
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {activeProject.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-[#c6ff00]/25 bg-[#c6ff00]/5 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c6ff00]/80"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </>
+              </div>
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-[11px] uppercase tracking-[0.3em] text-white/35">
+              <div className="flex h-full w-full items-center justify-center text-[15px] uppercase tracking-[0.3em] text-white/70">
                 Hover a project
               </div>
             )}
@@ -110,7 +153,7 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:hidden">
+      {/* <div className="grid gap-6 md:hidden">
         {projects.map((project) => (
           <div
             key={project.title}
@@ -123,7 +166,7 @@ export default function ProjectsPage() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 }
