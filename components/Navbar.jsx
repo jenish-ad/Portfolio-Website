@@ -22,7 +22,7 @@ export default function Navbar() {
             </a>
           </div>
 
-          <button className="rounded-lg px-3 py-3 text-[12px] font-medium uppercase tracking-[0.32em] text-white">
+          <button className="cursor-pointer rounded-lg px-3 py-3 text-[12px] font-medium uppercase tracking-[0.32em] text-white">
             _RESUME
           </button>
         </div>

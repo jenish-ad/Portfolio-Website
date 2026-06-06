@@ -1,5 +1,5 @@
 "use client";
-
+import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 
 const projects = [
@@ -9,7 +9,7 @@ const projects = [
     github: "https://github.com/jenish-ad/Credit-score-risk-analysis.git",
     description:
       "A credit risk analysis system designed to help users understand their credit score, risk level, and financial health through a clean dashboard. The project focuses on turning complex financial indicators into simple visual insights, making it easier for users to track risk, review score factors, and make more confident financial decisions.",
-    techStack: ["React", "Tailwind CSS", "JavaScript", "AI/ML"],
+    techStack: ["React", "Tailwind CSS", "JavaScript", "Django"],
     position: "left-[0px] top-[0px]",
   },
   {
@@ -96,8 +96,8 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 translate-y-4 opacity-0 transition-all delay-300 duration-300 group-hover:-translate-y-1/2 group-hover:opacity-100"
             >
-              <span className="rounded-full border border-[#c6ff00] bg-black/70 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
-                GitHub
+              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
+                <FaGithub className="text-2xl" />
               </span>
             </a>
           </div>
