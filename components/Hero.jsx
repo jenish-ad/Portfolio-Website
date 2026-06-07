@@ -33,6 +33,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0" />
 
       <section className="relative flex min-h-screen overflow-hidden px-10 pb-25 pt-24">
+        <div className="pointer-events-none absolute right-[8%] top-[48%] h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-[#ff4d00]/20 blur-[140px]" />
+        <div className="absolute left-[72%] top-[22%] h-[56%] w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
         <div className="relative z-10 w-[78%] self-end translate-y-8">
           <div
             className={`mb-8 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
@@ -41,7 +43,7 @@ export default function Hero() {
                 : "translate-y-16 opacity-0"
             }`}
           >
-            <div className="mb-10 h-px w-[420px] bg-white/30" />
+            <div className="mb-10 h-px w-[420px] bg-gradient-to-r from-white/30 via-white/90 to-transparent" />
             <p className="text-[13px] font-medium uppercase tracking-[0.32em] text-white/45">
               Namaste, I’m
             </p>
@@ -101,16 +103,17 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="absolute right-10 top-[56%] h-[700px] w-[360px] -translate-y-1/2 overflow-hidden">
-          <div className="relative h-full w-full overflow-hidden">
+        <div className="absolute right-16 top-[52%] z-20 h-[420px] w-[300px] -translate-y-1/2 overflow-hidden rounded-[18px] bg-white/5 p-2 shadow-[0_0_80px_rgba(255,77,0,0.18)] ring-1 ring-white/10">
+          <div className="relative h-full w-full overflow-hidden rounded-[22px]">
             <Image
               src="/hi-there.gif"
-              alt="Jenish portrait"
+              alt="Waving animation"
               fill
               priority
               loading="eager"
-              sizes="360px"
-              className="object-cover object-center grayscale"
+              unoptimized
+              sizes="300px"
+              className="object-cover object-center grayscale contrast-125 brightness-90"
             />
           </div>
         </div>
