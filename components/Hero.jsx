@@ -34,7 +34,7 @@ export default function Hero() {
 
       <section className="relative flex min-h-screen overflow-hidden px-10 pb-25 pt-24">
         <div className="pointer-events-none absolute right-[8%] top-[48%] h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-[#ff4d00]/20 blur-[140px]" />
-        <div className="absolute left-[72%] top-[22%] h-[56%] w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        <div className="absolute left-[72%] top-[22%] h-[56%] w-px bg-gradient-to-b from-transparent via-white/25 to-transparent" />
         <div className="relative z-10 w-[78%] self-end translate-y-8">
           <div
             className={`mb-8 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
@@ -53,7 +53,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <h1 className="text-[8.9rem] font-bold uppercase leading-[0.78] tracking-[-0.005em] text-white">
+          <h1 className="text-[8.9rem] font-bold uppercase leading-[0.78] text-white">
             <span
               className={`block transition-all delay-100 duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                 showIntro

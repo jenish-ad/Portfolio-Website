@@ -2,7 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar.jsx"
 
 export const metadata = {
-  title: "Jenish",
+  title: "Jenish Adhikari",
   description: "Personal portfolio website",
 };
 

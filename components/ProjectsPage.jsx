@@ -64,9 +64,11 @@ export default function ProjectsPage() {
 
   return (
     <section className="min-h-screen overflow-visible px-[7vw] py-10 text-white">
-      <h1 className="mb-20 text-center text-[42px] font-semibold tracking-[0.18em] text-white">
-        MY <span className="">WORKS</span>
+      <h1 className="mb-2 text-center text-4xl font-black tracking-[-0.04em] text-white">
+        MY  WORKS
       </h1>
+      <div className="mb-20 mx-auto h-[2px] w-48 bg-[#c6ff00]/60" />
+      <div id="projects" className="relative top-[-128px]" />
 
       <div className="relative hidden h-[900px] w-full md:block">
         {projects.map((project) => (
