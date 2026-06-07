@@ -11,9 +11,7 @@ export default function Navbar() {
 
         <div className="flex cursor-pointer items-center gap-18">
           <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/80">
-            <a className="transition-colors hover:text-[#ff4d00]">
-              01 / About
-            </a>
+            <a className="transition-colors hover:text-[#ff4d00]">01 / About</a>
             <a className="transition-colors hover:text-[#ff4d00]">
               02 / Projects
             </a>
@@ -22,9 +20,14 @@ export default function Navbar() {
             </a>
           </div>
 
-          <button className="cursor-pointer rounded-lg px-3 py-3 text-[12px] font-medium uppercase tracking-[0.32em] text-white">
+          <a
+            href="/Jenish_Adhikari_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer rounded-lg px-3 py-3 text-[12px] font-medium uppercase tracking-[0.32em] text-white transition-colors hover:text-[#ff4d00]"
+          >
             _RESUME
-          </button>
+          </a>
         </div>
       </div>
     </nav>

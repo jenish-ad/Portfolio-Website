@@ -96,7 +96,7 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 translate-y-4 opacity-0 transition-all delay-300 duration-300 group-hover:-translate-y-1/2 group-hover:opacity-100"
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
                 <FaGithub className="text-2xl" />
               </span>
             </a>
