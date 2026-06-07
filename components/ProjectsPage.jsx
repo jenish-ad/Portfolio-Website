@@ -75,7 +75,7 @@ export default function ProjectsPage() {
           <div
             key={project.title}
             onMouseEnter={() => setActiveProject(project)}
-            onMouseLeave={() => setActiveProject(null)}
+            onMouseLeave={() => setActiveProject(project)}
             className={`group absolute ${project.position} h-[260px] w-[310px] cursor-pointer overflow-hidden rounded-[8px] border-2 border-[#c6ff00] bg-black transition-all duration-300 hover:z-10 hover:scale-105`}
           >
             <img
