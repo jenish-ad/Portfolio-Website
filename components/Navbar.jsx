@@ -44,7 +44,6 @@ export default function Navbar() {
               onClick={(e) => scrollToSection(e, "about")}
               className="transition-colors hover:text-[#ff4d00]"
             >
-              <span className="hidden lg:inline">01 / </span>
               About
             </a>
 
@@ -53,7 +52,6 @@ export default function Navbar() {
               onClick={(e) => scrollToSection(e, "projects")}
               className="transition-colors hover:text-[#ff4d00]"
             >
-              <span className="hidden lg:inline">02 / </span>
               Projects
             </a>
 
@@ -62,7 +60,6 @@ export default function Navbar() {
               onClick={(e) => scrollToSection(e, "contact")}
               className="transition-colors hover:text-[#ff4d00]"
             >
-              <span className="hidden lg:inline">03 / </span>
               Contact
             </a>
           </div>
