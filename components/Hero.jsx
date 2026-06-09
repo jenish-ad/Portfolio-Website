@@ -60,7 +60,7 @@ export default function Hero() {
               : "translate-y-16 opacity-0"
           }`}
         >
-          <div className="mb-7 h-px w-full max-w-[470px] lg:mb-10" />
+          <div className="mb-7 h-px w-full max-w-[470px] bg-gradient-to-r from-white via-white/80 to-transparent lg:mb-10" />
 
           <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/45 sm:text-[13px] sm:tracking-[0.32em]">
             Namaste, I’m
