@@ -63,14 +63,60 @@ export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState(null);
 
   return (
-    <section className="min-h-screen overflow-visible px-[7vw] py-10 text-white">
-      <h1 className="mb-2 text-center text-4xl font-black tracking-[-0.04em] text-white">
+    <section className="min-h-screen overflow-visible px-5 py-16 text-white sm:px-8 lg:px-[7vw] lg:py-10">
+      <h1 className="mb-2 text-center text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
         MY  WORKS
       </h1>
-      <div className="mb-20 mx-auto h-[2px] w-48 bg-[#c6ff00]/60" />
+      <div className="mx-auto mb-12 h-[2px] w-36 bg-[#c6ff00]/60 sm:w-48 lg:mb-20" />
       <div id="projects" className="relative top-[-128px]" />
 
-      <div className="relative hidden h-[900px] w-full md:block">
+      <div className="grid gap-6 lg:hidden">
+        {projects.map((project) => (
+          <article
+            key={project.title}
+            className="overflow-hidden rounded-xl border border-[#c6ff00]/50 bg-white/[0.03]"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-full w-full object-cover object-left"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
+              <h2 className="absolute bottom-4 left-4 right-16 text-2xl font-black uppercase leading-none tracking-[-0.05em] text-white">
+                {project.title}
+              </h2>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title} on GitHub`}
+                className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full border border-[#c6ff00] bg-black/75 text-[#c6ff00]"
+              >
+                <FaGithub className="text-xl" />
+              </a>
+            </div>
+
+            <div className="p-5">
+              <p className="text-[14px] font-medium leading-6 text-white/60">
+                {project.description}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full border border-[#c6ff00]/25 bg-[#c6ff00]/5 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#c6ff00]/80"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="relative hidden h-[900px] w-full lg:block">
         {projects.map((project) => (
           <div
             key={project.title}
@@ -155,20 +201,6 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* <div className="grid gap-6 md:hidden">
-        {projects.map((project) => (
-          <div
-            key={project.title}
-            className="h-[220px] w-full overflow-hidden bg-[#ff650f]"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="h-full w-full object-cover grayscale"
-            />
-          </div>
-        ))}
-      </div> */}
     </section>
   );
 }

@@ -1,23 +1,15 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-// import About from "@/components/About";
+import Home from "@/components/Home";
 import ProjectsPage from "@/components/ProjectsPage";
 import Contact from "@/components/Contact";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Navbar />
-
-      <section id="home">
-        <Hero />
-      </section>
-
-      {/* <section id="about" className="scroll-mt-24">
-        <About />
-      </section> */}
-        <ProjectsPage />
-        <Contact />
+      <Home />
+      <ProjectsPage />
+      <Contact />
     </>
   );
 }

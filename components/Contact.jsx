@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   FaGithub,
   FaInstagram,
@@ -27,17 +28,69 @@ const socials = [
 ];
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setStatus("Message sent successfully.");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch {
+      setStatus("Message could not be sent. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black px-8 pt-6 pb-10 text-white">
-      {/* Background glow */}
+    <section className="relative min-h-screen overflow-hidden px-5 pb-24 pt-12 text-white sm:px-8 lg:pb-10 lg:pt-6">
       <div className="pointer-events-none absolute right-0 top-20 h-[340px] w-[340px] rounded-full bg-[#ff4d00]/12 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-[1050px]">
-        {/* Heading */}
         <div className="mb-7 text-center">
-          <h1 className="text-4xl font-black uppercase tracking-[-0.04em] text-white">
+          <h1 className="text-3xl font-black uppercase tracking-[-0.04em] text-white sm:text-4xl">
             Contact
           </h1>
+
           <div id="contact" className="relative top-[100px]" />
 
           <div className="mx-auto mt-2 h-[2px] w-38 bg-[#ff4d00]" />
@@ -50,7 +103,6 @@ export default function Contact() {
         </div>
 
         <div className="mx-auto grid max-w-[1000px] gap-6 lg:grid-cols-[1.25fr_0.95fr]">
-          {/* Left form */}
           <div>
             <div className="rounded-xl border border-white/15 bg-white/[0.025] p-5">
               <div className="mb-5">
@@ -59,7 +111,11 @@ export default function Contact() {
                 </h2>
               </div>
 
-              <form className="space-y-4">
+              <form
+                id="contact-form"
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
                     <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-white/65">
@@ -67,7 +123,10 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      placeholder="Your name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
                     />
                   </div>
@@ -78,7 +137,10 @@ export default function Contact() {
                     </label>
                     <input
                       type="email"
-                      placeholder="your@email.com"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
                     />
                   </div>
@@ -90,7 +152,10 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
-                    placeholder="What would you like to discuss?"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
                     className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
                   />
                 </div>
@@ -101,21 +166,33 @@ export default function Contact() {
                   </label>
                   <textarea
                     rows="4"
-                    placeholder="Tell me a little about your project, role, or idea..."
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     className="w-full resize-none rounded-md border border-white/10 bg-black/30 px-4 py-3 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
                   />
                 </div>
               </form>
             </div>
 
-            {/* Send button outside form box */}
-            <button className="group mt-3 flex h-10 w-fit items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-white shadow-[0_0_16px_rgba(255,77,0,0.16)] transition duration-300 hover:bg-[#ff4d00]/80">
+            <button
+              type="submit"
+              form="contact-form"
+              disabled={loading}
+              className="group mt-3 flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-white shadow-[0_0_16px_rgba(255,77,0,0.16)] transition duration-300 hover:bg-[#ff4d00]/80 disabled:cursor-not-allowed disabled:opacity-50 sm:h-10 sm:w-fit"
+            >
               <FaPaperPlane className="text-sm text-[#ff4d00] transition group-hover:text-white" />
-              Send
+              {loading ? "Sending..." : "Send"}
             </button>
+
+            {status && (
+              <p className="mt-3 text-[13px] font-medium text-white/60">
+                {status}
+              </p>
+            )}
           </div>
 
-          {/* Right side */}
           <div>
             <div className="rounded-xl border border-white/15 bg-white/[0.025] p-5">
               <div className="mb-4 flex items-center gap-3">

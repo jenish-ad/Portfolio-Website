@@ -32,7 +32,7 @@ export default function IntroAnimation({ onFinish }) {
     <AnimatePresence onExitComplete={onFinish}>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex justify-center items-center bg-black text-white overflow-hidden"
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black px-5 text-center text-white"
           initial={{ y: 0 }}
           exit={{
             y: "-100%",
@@ -44,7 +44,7 @@ export default function IntroAnimation({ onFinish }) {
         >
           <motion.h1
             key={index}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold"
+            className="mt-10 text-6xl font-bold sm:text-8xl md:text-9xl lg:text-[10rem]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
