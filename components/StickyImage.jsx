@@ -37,7 +37,7 @@ export default function StickyImage() {
               loading="eager"
               unoptimized
               sizes="315px"
-              className="object-cover object-center grayscale contrast-125 brightness-90"
+              className="object-cover object-center contrast-125 brightness-90"
             />
           </div>
         </motion.div>

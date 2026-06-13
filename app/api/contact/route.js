@@ -38,7 +38,6 @@ export async function POST(request) {
 
           <p>
             You have received a new message through your portfolio contact form.
-            The details are provided below for your review.
           </p>
 
           <table cellpadding="0" cellspacing="0" style="margin-top: 18px; margin-bottom: 22px; width: 100%; border-collapse: collapse;">

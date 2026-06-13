@@ -1,9 +1,21 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar.jsx"
 
 export const metadata = {
-  title: "Jenish Adhikari",
-  description: "Personal portfolio website",
+  title: "JENISH",
+  description:
+    "The professional portfolio of Jenish Adhikari, showcasing selected projects, skills, and experience.",
+  openGraph: {
+    title: "JENISH",
+    description:
+      "Explore the selected projects, skills, and experience of Jenish Adhikari.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JENISH",
+    description:
+      "Explore the selected projects, skills, and experience of Jenish Adhikari.",
+  },
 };
 
 export default function RootLayout({ children }) {
