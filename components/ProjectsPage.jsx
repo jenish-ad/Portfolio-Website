@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 
@@ -77,9 +78,11 @@ export default function ProjectsPage() {
             className="overflow-hidden rounded-xl border border-[#c6ff00]/50 bg-white/[0.03]"
           >
             <div className="relative aspect-[4/3] overflow-hidden">
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
+                fill
+                sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1023px) calc(100vw - 4rem), 310px"
                 className="h-full w-full object-cover object-left"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
@@ -120,29 +123,42 @@ export default function ProjectsPage() {
         {projects.map((project) => (
           <div
             key={project.title}
-            onMouseEnter={() => setActiveProject(project)}
-            onMouseLeave={() => setActiveProject(project)}
-            className={`group absolute ${project.position} h-[260px] w-[310px] cursor-pointer overflow-hidden rounded-[8px] border-2 border-[#c6ff00] bg-black transition-all duration-300 hover:z-10 hover:scale-105`}
+            className={`group absolute ${project.position} h-[260px] w-[310px] overflow-hidden rounded-[8px] border-2 border-[#c6ff00] bg-black transition-all duration-300 hover:z-10 hover:scale-105`}
           >
-            <img
+            <Image
               src={project.image}
               alt={project.title}
+              fill
+              sizes="326px"
+              quality={90}
               className="h-full w-full object-cover object-left grayscale"
             />
 
-            <img
+            <Image
               src={project.image}
-              alt={project.title}
+              alt=""
+              fill
+              sizes="326px"
+              quality={90}
               className="absolute left-0 top-0 h-full w-full -translate-y-full object-cover object-left transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
             />
 
             <div className="absolute inset-0 bg-black/0 transition-colors delay-300 duration-300 group-hover:bg-black/35" />
 
+            <button
+              type="button"
+              aria-label={`Select ${project.title}`}
+              aria-pressed={activeProject?.title === project.title}
+              onClick={() => setActiveProject(project)}
+              className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#c6ff00]"
+            />
+
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 translate-y-4 opacity-0 transition-all delay-300 duration-300 group-hover:-translate-y-1/2 group-hover:opacity-100"
+              aria-label={`View ${project.title} on GitHub`}
+              className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-[calc(50%-1rem)] opacity-0 transition-all delay-300 duration-300 group-hover:pointer-events-auto group-hover:-translate-y-1/2 group-hover:opacity-100"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
                 <FaGithub className="text-2xl" />
@@ -155,10 +171,12 @@ export default function ProjectsPage() {
           <div className="sticky top-25 h-[700px] w-full overflow-hidden border border-white/10 bg-white/5">
             {activeProject ? (
               <div className="flex h-full flex-col">
-                <div className="h-[360px] w-full overflow-hidden bg-white">
-                  <img
+                <div className="relative h-[360px] w-full overflow-hidden bg-white">
+                  <Image
                     src={activeProject.image}
                     alt={activeProject.title}
+                    fill
+                    sizes="600px"
                     className="h-full w-full object-cover object-left"
                   />
                 </div>
@@ -194,7 +212,7 @@ export default function ProjectsPage() {
               </div>
             ) : (
               <div className="flex h-full w-full items-center justify-center text-[15px] uppercase tracking-[0.3em] text-white/70">
-                Hover a project
+                Click a project
               </div>
             )}
           </div>
