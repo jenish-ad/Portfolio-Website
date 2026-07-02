@@ -60,6 +60,15 @@ const projects = [
   },
 ];
 
+const diagonalPositions = [
+  "left-0 top-0",
+  "left-[24%] top-[11%]",
+  "left-[48%] top-[20%]",
+  "left-0 top-[45%]",
+  "left-[24%] top-[56%]",
+  "left-[48%] top-[66%]",
+];
+
 export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState(null);
 
@@ -119,80 +128,82 @@ export default function ProjectsPage() {
         ))}
       </div>
 
-      <div className="relative hidden h-[900px] w-full lg:block">
-        {projects.map((project) => (
-          <div
-            key={project.title}
-            className={`group absolute ${project.position} h-[260px] w-[310px] overflow-hidden rounded-[8px] border-2 border-[#c6ff00] bg-black transition-all duration-300 hover:z-10 hover:scale-105`}
-          >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="326px"
-              quality={90}
-              className="h-full w-full object-cover object-left grayscale"
-            />
-
-            <Image
-              src={project.image}
-              alt=""
-              fill
-              sizes="326px"
-              quality={90}
-              className="absolute left-0 top-0 h-full w-full -translate-y-full object-cover object-left transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
-            />
-
-            <div className="absolute inset-0 bg-black/0 transition-colors delay-300 duration-300 group-hover:bg-black/35" />
-
-            <button
-              type="button"
-              aria-label={`Select ${project.title}`}
-              aria-pressed={activeProject?.title === project.title}
-              onClick={() => setActiveProject(project)}
-              className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#c6ff00]"
-            />
-
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${project.title} on GitHub`}
-              className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-[calc(50%-1rem)] opacity-0 transition-all delay-300 duration-300 group-hover:pointer-events-auto group-hover:-translate-y-1/2 group-hover:opacity-100"
+      <div className="hidden h-[760px] items-start gap-6 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(340px,42%)] xl:h-[840px] xl:gap-8 2xl:h-[900px] 2xl:grid-cols-[minmax(0,1fr)_560px]">
+        <div className="relative h-full min-w-0">
+          {projects.map((project, index) => (
+            <div
+              key={project.title}
+              className={`group absolute ${diagonalPositions[index]} aspect-[31/26] w-[clamp(11.75rem,18vw,19.375rem)] min-w-0 overflow-hidden rounded-[8px] border-2 border-[#c6ff00] bg-black transition-all duration-300 hover:z-10 hover:scale-105`}
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
-                <FaGithub className="text-2xl" />
-              </span>
-            </a>
-          </div>
-        ))}
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 1279px) 18vw, (max-width: 1919px) 18vw, 310px"
+                quality={90}
+                className="h-full w-full object-cover object-left grayscale"
+              />
 
-        <div className="absolute right-0 top-0 h-full w-[600px] overflow-visible">
-          <div className="sticky top-25 h-[700px] w-full overflow-hidden border border-white/10 bg-white/5">
+              <Image
+                src={project.image}
+                alt=""
+                fill
+                sizes="(max-width: 1279px) 18vw, (max-width: 1919px) 18vw, 310px"
+                quality={90}
+                className="absolute left-0 top-0 h-full w-full -translate-y-full object-cover object-left transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
+              />
+
+              <div className="absolute inset-0 bg-black/0 transition-colors delay-300 duration-300 group-hover:bg-black/35" />
+
+              <button
+                type="button"
+                aria-label={`Select ${project.title}`}
+                aria-pressed={activeProject?.title === project.title}
+                onClick={() => setActiveProject(project)}
+                className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#c6ff00]"
+              />
+
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title} on GitHub`}
+                className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-[calc(50%-1rem)] opacity-0 transition-all delay-300 duration-300 group-hover:pointer-events-auto group-hover:-translate-y-1/2 group-hover:opacity-100"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c6ff00] bg-black/70 text-[#c6ff00] backdrop-blur-sm transition-colors hover:bg-[#c6ff00] hover:text-black">
+                  <FaGithub className="text-2xl" />
+                </span>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div className="h-full min-w-0 overflow-visible">
+          <div className="sticky top-[6.25rem] h-[calc(100vh-7rem)] max-h-[700px] min-h-[560px] w-full overflow-hidden border border-white/10 bg-white/5">
             {activeProject ? (
               <div className="flex h-full flex-col">
-                <div className="relative h-[360px] w-full overflow-hidden bg-white">
+                <div className="relative h-[300px] w-full shrink-0 overflow-hidden bg-white xl:h-[340px]">
                   <Image
                     src={activeProject.image}
                     alt={activeProject.title}
                     fill
-                    sizes="600px"
+                    sizes="(max-width: 1535px) 42vw, 560px"
                     className="h-full w-full object-cover object-left"
                   />
                 </div>
 
-                <div>
-                  <h2 className="text-4xl font-black uppercase leading-none tracking-[-0.06em] text-white">
+                <div className="p-5 xl:p-6">
+                  <h2 className="text-[clamp(1.7rem,2.4vw,2.5rem)] font-black uppercase leading-none tracking-[-0.06em] text-white">
                     {activeProject.title}
                   </h2>
 
                   <div className="mt-5 h-px w-20 bg-[#c6ff00]/60" />
 
-                  <p className="mt-6 max-w-xl text-[15px] font-medium leading-7 text-white/60">
+                  <p className="mt-5 text-[14px] font-medium leading-6 text-white/60 xl:text-[15px] xl:leading-7">
                     {activeProject.description}
                   </p>
 
-                  <div className="mt-7">
+                  <div className="mt-6">
                     <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.26em] text-white/35">
                       Tech Stack
                     </p>

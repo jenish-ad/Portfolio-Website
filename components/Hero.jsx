@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-end overflow-hidden pb-16 pt-24 lg:min-h-screen lg:pb-24 lg:pt-28"
+      className="relative flex min-h-[100svh] items-end overflow-hidden pb-16 pt-24 lg:min-h-screen lg:pb-20 lg:pt-28 xl:pb-24"
     >
       <div className="pointer-events-none absolute right-[-24px] top-[22%] hidden h-[56%] w-px bg-gradient-to-b from-transparent via-white/25 to-transparent lg:block" />
 
@@ -44,7 +44,8 @@ export default function Hero() {
             src="/hi-there.gif"
             alt="Waving animation"
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             unoptimized
             sizes="(max-width: 1023px) 72vw, 0px"
             className="object-cover object-center grayscale contrast-125 brightness-90"
@@ -71,7 +72,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <h1 className="text-[clamp(3rem,14.5vw,5.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.05em] text-white lg:text-[9.1rem] lg:leading-[0.78] lg:tracking-[-0.04em]">
+        <h1 className="max-w-full text-[clamp(3rem,14.5vw,5.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.05em] text-white lg:text-[clamp(5.6rem,8.2vw,7rem)] lg:leading-[0.78] lg:tracking-[-0.04em] xl:text-[clamp(7rem,8.6vw,8.2rem)] 2xl:text-[9.1rem]">
           <span
             className={`block transition-all delay-100 duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
               showIntro
@@ -93,14 +94,14 @@ export default function Hero() {
           </span>
 
           <span
-            className={`relative inline-block h-[0.9em] w-full overflow-hidden align-baseline text-[#ff4d00] [perspective:1400px] transition-all delay-500 duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] lg:w-[7.9em] lg:px-[0.22em] ${
+            className={`relative inline-block h-[0.9em] w-full max-w-full overflow-hidden align-baseline text-[#ff4d00] [perspective:1400px] transition-all delay-500 duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] lg:w-[7.9em] lg:px-[0.16em] xl:px-[0.2em] 2xl:px-[0.22em] ${
               showIntro
                 ? "translate-y-0 opacity-100"
                 : "translate-y-24 opacity-0"
             }`}
           >
             <span
-              className="absolute left-0 top-0 h-full w-full transition-transform duration-[850ms] ease-[cubic-bezier(0.65,0,0.35,1)] [transform-style:preserve-3d] lg:left-[0.22em]"
+              className="absolute left-0 top-0 h-full w-full transition-transform duration-[850ms] ease-[cubic-bezier(0.65,0,0.35,1)] [transform-style:preserve-3d] lg:left-[0.16em] xl:left-[0.2em] 2xl:left-[0.22em]"
               style={{
                 transform: `rotateX(${rotationStep * 90}deg)`,
               }}
