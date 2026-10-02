@@ -24,7 +24,7 @@ const projects = [
     github: "https://github.com/jenish-ad/E-KYC.git",
     description:
       "A digital onboarding flow that verifies identity end to end: document validation, OCR-based detail extraction, face verification and liveness-style checks in one smooth process.",
-    techStack: ["React", "Tailwind CSS", "OCR", "Face Verification"],
+    techStack: ["React", "Python", "Machine Learning", "OCR"],
   },
   {
     title: "Movie Recommender",
@@ -32,7 +32,7 @@ const projects = [
     github: "https://github.com/jenish-ad/Movie-recommendation-system.git",
     description:
       "A machine learning recommender that compares movie features and similarity patterns to suggest films matched to each user's taste.",
-    techStack: ["Python", "Machine Learning", "Pandas", "Scikit-learn"],
+    techStack: ["C++", "Qt"],
   },
 ];
 
@@ -95,6 +95,7 @@ export default function ProjectsPage() {
                 src={project.image}
                 alt={`${project.title} screenshot`}
                 fill
+                loading="eager"
                 quality={90}
                 sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1279px) 45vw, 520px"
                 className="object-cover object-left-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
