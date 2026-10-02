@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function escapeHtml(value) {
   return String(value)
@@ -21,6 +21,23 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    if (!EMAIL_PATTERN.test(email)) {
+      return Response.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Contact form error: RESEND_API_KEY is not set.");
+      return Response.json(
+        { error: "Messaging is not configured right now." },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);

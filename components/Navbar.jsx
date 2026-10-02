@@ -1,6 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { motion } from "motion/react";
+
+const links = [
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function Navbar() {
   useEffect(() => {
@@ -20,13 +27,13 @@ export default function Navbar() {
       block: "start",
     });
 
-    // removes #home / #about / #projects / #contact from URL
+    // Keep the URL clean instead of leaving #section in it
     window.history.replaceState(null, "", window.location.pathname);
   };
 
   return (
-    <nav className="fixed left-0 top-0 z-50 w-full text-white">
-      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/20 to-transparent" />
+    <nav className="fixed left-0 top-0 z-50 w-full text-[#1a1714]">
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#f3ede4]/90 to-transparent" />
 
       <div className="relative z-10 flex w-full items-center justify-between px-5 py-4 lg:px-10 lg:py-5">
         <a
@@ -37,40 +44,41 @@ export default function Navbar() {
           JENISH ADHIKARI
         </a>
 
-        <div className="flex cursor-pointer items-center gap-2 lg:gap-18">
-          <div className="fixed bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-4 rounded-full border border-white/10 bg-black/80 px-5 py-3 text-[10px] font-medium uppercase tracking-[0.12em] text-white/80 shadow-lg backdrop-blur-md lg:static lg:translate-x-0 lg:gap-2 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:text-[11px] lg:tracking-[0.18em] lg:shadow-none lg:backdrop-blur-none">
-            <a
-              href="#about"
-              onClick={(e) => scrollToSection(e, "about")}
-              className="transition-colors hover:text-[#ff4d00]"
-            >
-              About
-            </a>
-
-            <a
-              href="#projects"
-              onClick={(e) => scrollToSection(e, "projects")}
-              className="transition-colors hover:text-[#ff4d00]"
-            >
-              Projects
-            </a>
-
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, "contact")}
-              className="transition-colors hover:text-[#ff4d00]"
-            >
-              Contact
-            </a>
+        <div className="flex items-center gap-2 lg:gap-18">
+          <div className="fixed bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-4 rounded-full border border-[#1a1714]/10 bg-[#f3ede4]/85 px-5 py-3 text-[10px] font-medium uppercase tracking-[0.12em] text-[#1a1714]/80 shadow-lg backdrop-blur-md lg:static lg:translate-x-0 lg:gap-2 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:text-[11px] lg:tracking-[0.18em] lg:shadow-none lg:backdrop-blur-none">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => scrollToSection(e, link.id)}
+                className="group relative transition-colors hover:text-[#ff4d00]"
+              >
+                {link.label}
+                <span className="absolute -bottom-0.5 left-0 h-[2px] w-full origin-right scale-x-0 bg-[#ff4d00] transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
+              </a>
+            ))}
           </div>
 
           <a
             href="/Jenish_Adhikari_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer rounded-lg px-2 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[#ff4d00] lg:px-3 lg:py-3 lg:text-[12px] lg:tracking-[0.32em]"
+            className="cursor-pointer rounded-lg px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1a1714] transition-colors hover:text-[#ff4d00] lg:px-3 lg:py-3 lg:text-[12px] lg:tracking-[0.32em]"
           >
-            _RESUME
+            <span className="relative inline-block pb-1">
+              RESUME
+              <motion.span
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 h-[3px] w-[calc(100%-0.2em)] bg-[#ff4d00] lg:w-[calc(100%-0.32em)]"
+                animate={{ opacity: [1, 1, 0, 0] }}
+                transition={{
+                  duration: 1.1,
+                  times: [0, 0.5, 0.5, 1],
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </span>
           </a>
         </div>
       </div>

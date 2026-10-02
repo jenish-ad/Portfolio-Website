@@ -27,6 +27,9 @@ const socials = [
   },
 ];
 
+const fieldClass =
+  "w-full rounded-md border border-[#1a1714]/10 bg-white/70 px-4 text-[14px] font-medium text-[#1a1714] outline-none transition placeholder:text-[#1a1714]/35 focus:border-[#ff4d00]/80 focus:bg-white";
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -82,20 +85,21 @@ export default function Contact() {
   }
 
   return (
-    <section className="relative min-h-screen overflow-hidden px-5 pb-24 pt-12 text-white sm:px-8 lg:pb-10 lg:pt-6">
-      <div className="pointer-events-none absolute right-0 top-20 h-[340px] w-[340px] rounded-full bg-[#ff4d00]/12 blur-[120px]" />
+    <section
+      id="contact"
+      className="relative min-h-screen scroll-mt-13 overflow-hidden px-5 pb-24 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-10 lg:pt-6"
+    >
+      <div className="pointer-events-none absolute right-0 top-20 h-[340px] w-[340px] rounded-full bg-[#ff4d00]/8 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-[1050px]">
         <div className="mb-7 text-center">
-          <h1 className="text-3xl font-black uppercase tracking-[-0.04em] text-white sm:text-4xl">
+          <h2 className="text-3xl font-black uppercase tracking-[-0.04em] text-[#1a1714] sm:text-4xl">
             Contact
-          </h1>
+          </h2>
 
-          <div id="contact" className="relative top-[100px]" />
+          <div className="mx-auto mt-2 h-[3px] w-38 bg-[#ff4d00]" />
 
-          <div className="mx-auto mt-2 h-[2px] w-38 bg-[#ff4d00]" />
-
-          <p className="mx-auto mt-3 max-w-[560px] text-[15px] font-medium leading-7 tracking-[-0.01em] text-white/55">
+          <p className="mx-auto mt-3 max-w-[560px] text-[15px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
             Open to full-stack roles, thoughtful projects, and collaborations
             focused on clean design, reliable systems, and practical
             engineering.
@@ -104,11 +108,11 @@ export default function Contact() {
 
         <div className="mx-auto grid max-w-[1000px] gap-6 lg:grid-cols-[1.25fr_0.95fr]">
           <div>
-            <div className="rounded-xl border border-white/15 bg-white/[0.025] p-5">
+            <div className="rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
               <div className="mb-5">
-                <h2 className="text-[22px] font-semibold tracking-[-0.04em] text-white">
+                <h3 className="text-[22px] font-semibold tracking-[-0.04em] text-[#1a1714]">
                   Send a Message
-                </h2>
+                </h3>
               </div>
 
               <form
@@ -118,59 +122,63 @@ export default function Contact() {
               >
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-white/65">
+                    <label htmlFor="contact-name" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
                       Name
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
+                      className={`h-11 ${fieldClass}`}
                     />
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-white/65">
+                    <label htmlFor="contact-email" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
                       Email
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
+                      className={`h-11 ${fieldClass}`}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-white/65">
+                  <label htmlFor="contact-subject" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
                     Subject
                   </label>
                   <input
+                    id="contact-subject"
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="h-11 w-full rounded-md border border-white/10 bg-black/30 px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
+                    className={`h-11 ${fieldClass}`}
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-white/65">
+                  <label htmlFor="contact-message" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     rows="4"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full resize-none rounded-md border border-white/10 bg-black/30 px-4 py-3 text-[14px] font-medium text-white outline-none transition placeholder:text-white/20 focus:border-[#ff4d00]/80 focus:bg-black/50"
+                    className={`resize-none py-3 ${fieldClass}`}
                   />
                 </div>
               </form>
@@ -180,36 +188,36 @@ export default function Contact() {
               type="submit"
               form="contact-form"
               disabled={loading}
-              className="group mt-3 flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-white shadow-[0_0_16px_rgba(255,77,0,0.16)] transition duration-300 hover:bg-[#ff4d00]/80 disabled:cursor-not-allowed disabled:opacity-50 sm:h-10 sm:w-fit"
+              className="group mt-3 flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-[#1a1714] shadow-none transition duration-300 hover:bg-[#ff4d00] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 sm:h-10 sm:w-fit"
             >
               <FaPaperPlane className="text-sm text-[#ff4d00] transition group-hover:text-white" />
               {loading ? "Sending..." : "Send"}
             </button>
 
             {status && (
-              <p className="mt-3 text-[13px] font-medium text-white/60">
+              <p className="mt-3 text-[13px] font-medium text-[#1a1714]/70">
                 {status}
               </p>
             )}
           </div>
 
           <div>
-            <div className="rounded-xl border border-white/15 bg-white/[0.025] p-5">
+            <div className="rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
               <div className="mb-4 flex items-center gap-3">
-                <MdOutlineEmail className="text-2xl text-white" />
-                <h2 className="text-[22px] font-semibold tracking-[-0.04em] text-white">
+                <MdOutlineEmail className="text-2xl text-[#1a1714]" />
+                <h3 className="text-[22px] font-semibold tracking-[-0.04em] text-[#1a1714]">
                   Get In Touch
-                </h2>
+                </h3>
               </div>
 
               <a
                 href="mailto:adhicary.jen@gmail.com"
-                className="text-[15px] font-semibold tracking-[-0.01em] text-white transition hover:text-[#ff4d00]"
+                className="text-[15px] font-semibold tracking-[-0.01em] text-[#1a1714] transition hover:text-[#ff4d00]"
               >
                 adhicary.jen@gmail.com
               </a>
 
-              <p className="mt-5 max-w-[370px] text-[14px] font-medium leading-7 tracking-[-0.01em] text-white/58">
+              <p className="mt-5 max-w-[370px] text-[14px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
                 I build clean, practical web interfaces and data-driven systems.
                 For roles, collaborations, or project discussions, reach out
                 anytime.
@@ -217,9 +225,9 @@ export default function Contact() {
             </div>
 
             <div className="mt-6">
-              <h3 className="mb-3 text-[21px] font-semibold tracking-[-0.04em] text-white">
+              <h4 className="mb-3 text-[21px] font-semibold tracking-[-0.04em] text-[#1a1714]">
                 Connect Online
-              </h3>
+              </h4>
 
               <div className="space-y-2.5">
                 {socials.map((social) => (
@@ -228,9 +236,9 @@ export default function Contact() {
                     href={social.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-10 w-fit min-w-[150px] items-center gap-3 rounded-lg border border-white/15 bg-white/[0.02] px-4 text-white transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
+                    className="flex h-10 w-fit min-w-[150px] items-center gap-3 rounded-lg border border-[#1a1714]/15 bg-white/40 px-4 text-[#1a1714] transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
                   >
-                    <span className="text-lg text-white">{social.icon}</span>
+                    <span className="text-lg text-[#1a1714]">{social.icon}</span>
                     <span className="text-[14px] font-semibold tracking-[-0.01em]">
                       {social.name}
                     </span>
@@ -238,7 +246,7 @@ export default function Contact() {
                 ))}
               </div>
 
-              <p className="mt-4 max-w-[360px] text-[13px] font-medium leading-6 tracking-[-0.01em] text-white/42">
+              <p className="mt-4 max-w-[360px] text-[13px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/60">
                 View my work, follow updates, or connect directly.
               </p>
             </div>
