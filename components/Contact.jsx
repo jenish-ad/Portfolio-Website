@@ -8,24 +8,13 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { site } from "@/lib/site";
 
-const socials = [
-  {
-    name: "GitHub",
-    icon: <FaGithub />,
-    link: "https://github.com/jenish-ad",
-  },
-  {
-    name: "LinkedIn",
-    icon: <FaLinkedinIn />,
-    link: "https://www.linkedin.com/in/jenish-adhikari-8bab6524a",
-  },
-  {
-    name: "Instagram",
-    icon: <FaInstagram />,
-    link: "https://www.instagram.com/jenisss.99",
-  },
-];
+const socialIcons = {
+  GitHub: <FaGithub />,
+  LinkedIn: <FaLinkedinIn />,
+  Instagram: <FaInstagram />,
+};
 
 const fieldClass =
   "w-full rounded-md border border-[#1a1714]/10 bg-white/70 px-4 text-[14px] font-medium text-[#1a1714] outline-none transition placeholder:text-[#1a1714]/35 focus:border-[#ff4d00]/80 focus:bg-white";
@@ -89,24 +78,24 @@ export default function Contact() {
       id="contact"
       className="relative min-h-screen scroll-mt-13 overflow-hidden px-5 pb-24 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-10 lg:pt-6"
     >
-      <div className="pointer-events-none absolute right-0 top-20 h-[340px] w-[340px] rounded-full bg-[#ff4d00]/8 blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 top-20 h-85 w-85 rounded-full bg-[#ff4d00]/8 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1050px]">
+      <div className="relative z-10 mx-auto max-w-262.5">
         <div className="mb-7 text-center">
           <h2 className="text-3xl font-black uppercase tracking-[-0.04em] text-[#1a1714] sm:text-4xl">
             Contact
           </h2>
 
-          <div className="mx-auto mt-2 h-[3px] w-38 bg-[#ff4d00]" />
+          <div className="mx-auto mt-2 h-0.75 w-38 bg-[#ff4d00]" />
 
-          <p className="mx-auto mt-3 max-w-[560px] text-[15px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
+          <p className="mx-auto mt-3 max-w-140 text-[15px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
             Open to full-stack roles, thoughtful projects, and collaborations
             focused on clean design, reliable systems, and practical
             engineering.
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-[1000px] gap-6 lg:grid-cols-[1.25fr_0.95fr]">
+        <div className="mx-auto grid max-w-250 gap-6 lg:grid-cols-[1.25fr_0.95fr]">
           <div>
             <div className="rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
               <div className="mb-5">
@@ -211,13 +200,13 @@ export default function Contact() {
               </div>
 
               <a
-                href="mailto:adhicary.jen@gmail.com"
+                href={`mailto:${site.email}`}
                 className="text-[15px] font-semibold tracking-[-0.01em] text-[#1a1714] transition hover:text-[#ff4d00]"
               >
-                adhicary.jen@gmail.com
+                {site.email}
               </a>
 
-              <p className="mt-5 max-w-[370px] text-[14px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
+              <p className="mt-5 max-w-92.5 text-[14px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
                 I build clean, practical web interfaces and data-driven systems.
                 For roles, collaborations, or project discussions, reach out
                 anytime.
@@ -230,15 +219,15 @@ export default function Contact() {
               </h4>
 
               <div className="space-y-2.5">
-                {socials.map((social) => (
+                {site.socials.map((social) => (
                   <a
                     key={social.name}
-                    href={social.link}
+                    href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-10 w-fit min-w-[150px] items-center gap-3 rounded-lg border border-[#1a1714]/15 bg-white/40 px-4 text-[#1a1714] transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
+                    className="flex h-10 w-fit min-w-37.5 items-center gap-3 rounded-lg border border-[#1a1714]/15 bg-white/40 px-4 text-[#1a1714] transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
                   >
-                    <span className="text-lg text-[#1a1714]">{social.icon}</span>
+                    <span className="text-lg text-[#1a1714]">{socialIcons[social.name]}</span>
                     <span className="text-[14px] font-semibold tracking-[-0.01em]">
                       {social.name}
                     </span>
@@ -246,7 +235,7 @@ export default function Contact() {
                 ))}
               </div>
 
-              <p className="mt-4 max-w-[360px] text-[13px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/60">
+              <p className="mt-4 max-w-90 text-[13px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/60">
                 View my work, follow updates, or connect directly.
               </p>
             </div>

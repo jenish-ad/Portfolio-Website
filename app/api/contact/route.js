@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { site } from "@/lib/site";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -46,7 +47,7 @@ export async function POST(request) {
 
     await resend.emails.send({
       from: "Jenish Portfolio <onboarding@resend.dev>",
-      to: "adhicary.jen@gmail.com",
+      to: site.email,
       subject: `Portfolio Contact: ${safeSubject}`,
       replyTo: email,
       html: `

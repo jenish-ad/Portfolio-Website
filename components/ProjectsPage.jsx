@@ -45,9 +45,9 @@ export default function ProjectsPage() {
       <h2 className="mb-2 text-center text-3xl font-black uppercase tracking-[-0.04em] text-[#1a1714] sm:text-4xl">
         My Works
       </h2>
-      <div className="mx-auto mb-12 h-[3px] w-36 bg-[#ff4d00] sm:w-48 lg:mb-16" />
+      <div className="mx-auto mb-12 h-0.75 w-36 bg-[#ff4d00] sm:w-48 lg:mb-16" />
 
-      <div className="mx-auto grid max-w-[1180px] gap-6 sm:grid-cols-2 sm:gap-y-24 sm:pb-16 lg:gap-x-8 lg:gap-y-32 lg:pb-24">
+      <div className="mx-auto grid max-w-295 gap-6 sm:grid-cols-2 sm:gap-y-24 sm:pb-16 lg:gap-x-8 lg:gap-y-32 lg:pb-24">
         {projects.map((project, index) => (
           <article
             key={project.title}
@@ -71,7 +71,7 @@ export default function ProjectsPage() {
               </a>
             </div>
 
-            <h3 className="mt-3 text-[clamp(1.5rem,2.4vw,2rem)] font-black uppercase leading-none tracking-[-0.05em] text-[#1a1714]">
+            <h3 className="mt-3 text-[clamp(1.5rem,2.4vw,2rem)] font-black uppercase leading-none tracking-tighter text-[#1a1714]">
               {project.title}
             </h3>
 

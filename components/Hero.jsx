@@ -30,9 +30,9 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pb-20 pt-20 lg:min-h-screen lg:flex-row lg:items-end lg:justify-start lg:pb-20 lg:pt-28 xl:pb-24"
     >
-      <div className="pointer-events-none absolute right-[-24px] top-[22%] hidden h-[56%] w-px bg-gradient-to-b from-transparent via-[#1a1714]/20 to-transparent lg:block" />
+      <div className="pointer-events-none absolute right-[-24px] top-[22%] hidden h-[56%] w-px bg-linear-to-b from-transparent via-[#1a1714]/20 to-transparent lg:block" />
 
-      <div className="relative mx-auto mb-6 h-[30svh] max-h-[320px] min-h-[170px] w-[72vw] max-w-[270px] shrink-0 overflow-hidden rounded-[18px] bg-white/50 p-2 shadow-[0_24px_60px_rgba(26,23,20,0.14)] ring-1 ring-[#1a1714]/10 lg:hidden">
+      <div className="relative mx-auto mb-6 h-[30svh] max-h-80 min-h-42.5 w-[72vw] max-w-67.5 shrink-0 overflow-hidden rounded-[18px] bg-white/50 p-2 shadow-[0_24px_60px_rgba(26,23,20,0.14)] ring-1 ring-[#1a1714]/10 lg:hidden">
         <div className="relative h-full w-full overflow-hidden rounded-[14px]">
           <Image
             src="/hi-there.gif"
@@ -42,7 +42,7 @@ export default function Hero() {
             fetchPriority="high"
             unoptimized
             sizes="(max-width: 1023px) 72vw, 0px"
-            className="object-cover object-center grayscale contrast-125 brightness-90"
+            className="object-cover object-center contrast-125 brightness-90"
           />
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function Hero() {
               : "translate-y-16 opacity-0"
           }`}
         >
-          <div className="mb-7 h-px w-full max-w-[470px] bg-gradient-to-r from-[#1a1714] via-[#1a1714]/70 to-transparent lg:mb-10" />
+          <div className="mb-7 h-px w-full max-w-117.5 bg-linear-to-r from-[#1a1714] via-[#1a1714]/70 to-transparent lg:mb-10" />
 
           <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#1a1714]/60 sm:text-[13px] sm:tracking-[0.32em]">
             Namaste, I’m
@@ -66,7 +66,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <h1 className="max-w-full text-[clamp(3rem,14.5vw,5.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.05em] text-[#1a1714] lg:text-[clamp(5.6rem,8.2vw,7rem)] lg:leading-[0.78] lg:tracking-[-0.04em] xl:text-[clamp(7rem,8.6vw,8.2rem)] 2xl:text-[9.1rem]">
+        <h1 className="max-w-full text-[clamp(3rem,14.5vw,5.5rem)] font-bold uppercase leading-[0.82] tracking-tighter text-[#1a1714] lg:text-[clamp(5.6rem,8.2vw,7rem)] lg:leading-[0.78] lg:tracking-[-0.04em] xl:text-[clamp(7rem,8.6vw,8.2rem)] 2xl:text-[9.1rem]">
           <span
             className={`block transition-all delay-100 duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
               showIntro

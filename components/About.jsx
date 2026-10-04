@@ -1,74 +1,85 @@
-export default function About() {
+import Image from "next/image";
+import Modal from "./Modal";
+
+const facts = [
+  { label: "Focus", value: "Full-stack Development" },
+  { label: "Interest", value: "AI Tools & Data Systems" },
+  { label: "Approach", value: "Clean UI, Reliable Logic" },
+  { label: "Based In", value: "Nepal" },
+];
+
+export default function About({ open, onClose }) {
   return (
-    <section
-      id="about"
-      className="relative min-h-screen scroll-mt-9 border-t border-[#1a1714]/10 px-0 py-16 lg:scroll-mt-0 lg:py-24"
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="about-title"
+      className="relative grid max-h-[90vh] w-full max-w-240 grid-cols-1 overflow-y-auto rounded-3xl border border-[#1a1714]/10 bg-[#f3ede4] text-[#1a1714] shadow-2xl md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:overflow-hidden"
     >
-      <div className="mx-auto max-w-[1200px] lg:pl-10">
-        <div className="mb-10 text-center lg:mb-12">
-          <h2 className="text-3xl font-black uppercase leading-none tracking-[-0.06em] text-[#1a1714] sm:text-4xl">
-            About
-          </h2>
-          <div className="mx-auto mt-2 h-[3px] w-[150px] bg-[#ff4d00]" />
-        </div>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close about"
+        className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#f3ede4]/80 text-2xl leading-none text-[#1a1714]/60 backdrop-blur transition-colors hover:bg-[#1a1714]/5 hover:text-[#ff4d00]"
+      >
+        ×
+      </button>
 
-        <div className="w-full max-w-none lg:pr-8">
-          <h3 className="text-[clamp(2.6rem,12vw,4rem)] font-black uppercase leading-[0.92] tracking-[-0.06em] text-[#1a1714] lg:text-[4.7rem] lg:leading-[0.88] lg:tracking-[-0.065em]">
-            I turn ideas into clean, practical digital systems.
-          </h3>
-
-          <p className="mt-7 max-w-none text-[15px] font-semibold leading-7 tracking-[-0.02em] text-[#1a1714]/70 sm:text-[17px] sm:leading-8 lg:mt-9">
-            I’m Jenish Adhikari, a Computer Engineering student focused on
-            building full-stack web applications, AI-powered tools, and
-            data-driven systems. I enjoy creating digital products that are not
-            only visually clean, but also reliable, useful, and easy to
-            maintain.
-          </p>
-
-          <p className="mt-5 max-w-none text-[15px] font-semibold leading-7 tracking-[-0.02em] text-[#1a1714]/70 sm:text-[17px] sm:leading-8 lg:mt-6">
-            My work usually sits between design, development, and
-            problem-solving. I like taking real-world requirements and turning
-            them into smooth interfaces, structured logic, and practical systems
-            that people can actually use.
-          </p>
-
-          <div className="mt-10 grid w-full gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-14">
-            <div className="border-t border-[#1a1714]/15 pt-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[#1a1714]/55">
-                Focus
-              </p>
-              <p className="mt-3 text-[17px] font-bold text-[#1a1714]">
-                Full-stack Development
-              </p>
-            </div>
-
-            <div className="border-t border-[#1a1714]/15 pt-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[#1a1714]/55">
-                Interest
-              </p>
-              <p className="mt-3 text-[17px] font-bold text-[#1a1714]">
-                AI Tools & Data Systems
-              </p>
-            </div>
-
-            <div className="border-t border-[#1a1714]/15 pt-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[#1a1714]/55">
-                Approach
-              </p>
-              <p className="mt-3 text-[17px] font-bold text-[#1a1714]">
-                Clean UI, Reliable Logic
-              </p>
-            </div>
-
-            <div className="border-t border-[#1a1714]/15 pt-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[#1a1714]/55">
-                Based In
-              </p>
-              <p className="mt-3 text-[17px] font-bold text-[#1a1714]">Nepal</p>
-            </div>
-          </div>
+      <div className="p-3 md:p-4">
+        <div className="relative h-65 w-full overflow-hidden rounded-[18px] bg-white/50 ring-1 ring-[#1a1714]/10 sm:h-85 md:h-full md:min-h-120">
+          <Image
+            src="/hi-there.gif"
+            alt="Waving animation"
+            fill
+            unoptimized
+            sizes="(max-width: 767px) 100vw, 400px"
+            className="object-cover object-center contrast-125 brightness-90"
+          />
         </div>
       </div>
-    </section>
+
+      <div className="flex flex-col justify-center p-6 sm:p-8 md:overflow-y-auto md:py-10 md:pl-4 md:pr-10">
+        <h2
+          id="about-title"
+          className="text-3xl font-black uppercase leading-none tracking-[-0.06em]"
+        >
+          About
+        </h2>
+        <div className="mt-2 h-0.75 w-25 bg-[#ff4d00]" />
+
+        <h3 className="mt-6 text-[clamp(1.8rem,5vw,2.6rem)] font-black uppercase leading-[0.92] tracking-[-0.06em]">
+          I turn ideas into clean, practical digital systems.
+        </h3>
+
+        <p className="mt-5 text-[15px] font-semibold leading-7 tracking-[-0.02em] text-[#1a1714]/70">
+          I’m Jenish Adhikari, a Computer Engineering student focused on
+          building full-stack web applications, AI-powered tools, and
+          data-driven systems. I enjoy creating digital products that are
+          not only visually clean, but also reliable, useful, and easy to
+          maintain.
+        </p>
+
+        <p className="mt-4 text-[15px] font-semibold leading-7 tracking-[-0.02em] text-[#1a1714]/70">
+          My work usually sits between design, development, and
+          problem-solving. I like taking real-world requirements and
+          turning them into smooth interfaces, structured logic, and
+          practical systems that people can actually use.
+        </p>
+
+        <div className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5">
+          {facts.map((fact) => (
+            <div
+              key={fact.label}
+              className="border-t border-[#1a1714]/15 pt-3"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1a1714]/55">
+                {fact.label}
+              </p>
+              <p className="mt-1.5 text-[15px] font-bold">{fact.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Modal>
   );
 }
