@@ -36,7 +36,7 @@ const projects = [
   },
 ];
 
-export default function ProjectsPage() {
+export default function Projects() {
   return (
     <section
       id="projects"

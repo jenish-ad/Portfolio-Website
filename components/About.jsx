@@ -2,10 +2,9 @@ import Image from "next/image";
 import Modal from "./Modal";
 
 const facts = [
-  { label: "Focus", value: "Full-stack Development" },
-  { label: "Interest", value: "AI Tools & Data Systems" },
-  { label: "Approach", value: "Clean UI, Reliable Logic" },
-  { label: "Based In", value: "Nepal" },
+  { label: "Role", value: "Full-Stack Developer" },
+  { label: "Core Stack", value: "React, Next.js, Django" },
+  { label: "Location", value: "Nepal" },
 ];
 
 export default function About({ open, onClose }) {
@@ -43,14 +42,9 @@ export default function About({ open, onClose }) {
           id="about-title"
           className="text-3xl font-black uppercase leading-none tracking-[-0.06em]"
         >
-          About
+          About Me
         </h2>
-        <div className="mt-2 h-0.75 w-25 bg-[#ff4d00]" />
-
-        <h3 className="mt-6 text-[clamp(1.8rem,5vw,2.6rem)] font-black uppercase leading-[0.92] tracking-[-0.06em]">
-          I turn ideas into clean, practical digital systems.
-        </h3>
-
+        <div className="mt-2 h-0.75 w-37 bg-[#ff4d00]" />
         <p className="mt-5 text-[15px] font-semibold leading-7 tracking-[-0.02em] text-[#1a1714]/70">
           I’m Jenish Adhikari, a Computer Engineering student focused on
           building full-stack web applications, AI-powered tools, and

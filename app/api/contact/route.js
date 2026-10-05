@@ -1,113 +1,38 @@
 import { Resend } from "resend";
 import { site } from "@/lib/site";
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+const escape = (value) =>
+  String(value).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 export async function POST(request) {
+  const { name, email, subject, message } = await request.json();
+
+  if (!name || !email || !subject || !message) {
+    return Response.json({ error: "All fields are required." }, { status: 400 });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return Response.json({ error: "Please enter a valid email address." }, { status: 400 });
+  }
+
   try {
-    const { name, email, subject, message } = await request.json();
-
-    if (!name || !email || !subject || !message) {
-      return Response.json(
-        { error: "All fields are required." },
-        { status: 400 }
-      );
-    }
-
-    if (!EMAIL_PATTERN.test(email)) {
-      return Response.json(
-        { error: "Please enter a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    if (!process.env.RESEND_API_KEY) {
-      console.error("Contact form error: RESEND_API_KEY is not set.");
-      return Response.json(
-        { error: "Messaging is not configured right now." },
-        { status: 500 }
-      );
-    }
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safeSubject = escapeHtml(subject);
-    const safeMessage = escapeHtml(message);
-
-    await resend.emails.send({
+    await new Resend(process.env.RESEND_API_KEY).emails.send({
       from: "Jenish Portfolio <onboarding@resend.dev>",
       to: site.email,
-      subject: `Portfolio Contact: ${safeSubject}`,
       replyTo: email,
+      subject: `Portfolio Contact: ${subject}`,
       html: `
-        <div style="font-family: Arial, Helvetica, sans-serif; color: #222222; line-height: 1.6; font-size: 15px;">
-          <p>Dear Jenish,</p>
-
-          <p>
-            You have received a new message through your portfolio contact form.
-          </p>
-
-          <table cellpadding="0" cellspacing="0" style="margin-top: 18px; margin-bottom: 22px; width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 8px 0; width: 120px; font-weight: bold; color: #333333;">
-                Name:
-              </td>
-              <td style="padding: 8px 0; color: #333333;">
-                ${safeName}
-              </td>
-            </tr>
-
-            <tr>
-              <td style="padding: 8px 0; width: 120px; font-weight: bold; color: #333333;">
-                Email:
-              </td>
-              <td style="padding: 8px 0; color: #333333;">
-                <a href="mailto:${safeEmail}" style="color: #222222; text-decoration: underline;">
-                  ${safeEmail}
-                </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td style="padding: 8px 0; width: 120px; font-weight: bold; color: #333333;">
-                Subject:
-              </td>
-              <td style="padding: 8px 0; color: #333333;">
-                ${safeSubject}
-              </td>
-            </tr>
-          </table>
-
-          <p style="margin-bottom: 8px;"><strong>Message:</strong></p>
-
-          <p style="white-space: pre-line; margin-top: 0;">
-            ${safeMessage}
-          </p>
+        <div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222">
+          <p>New message from your portfolio:</p>
+          <p><strong>Name:</strong> ${escape(name)}<br />
+             <strong>Email:</strong> ${escape(email)}<br />
+             <strong>Subject:</strong> ${escape(subject)}</p>
+          <p style="white-space: pre-line">${escape(message)}</p>
         </div>
       `,
     });
-
-    return Response.json(
-      { message: "Message sent successfully." },
-      { status: 200 }
-    );
+    return Response.json({ message: "Message sent." });
   } catch (error) {
     console.error("Contact form error:", error);
-
-    return Response.json(
-      { error: "Failed to send message. Please try again later." },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to send message." }, { status: 500 });
   }
 }

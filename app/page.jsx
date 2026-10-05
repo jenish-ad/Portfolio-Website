@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Home from "@/components/Home";
 import Experience from "@/components/Experience";
-import ProjectsPage from "@/components/ProjectsPage";
+import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import { site } from "@/lib/site";
 
@@ -36,7 +36,7 @@ export default function Page() {
       <Navbar />
       <Home />
       <Experience />
-      <ProjectsPage />
+      <Projects />
       <Contact />
     </>
   );

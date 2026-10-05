@@ -24,7 +24,7 @@ export default function Experience() {
       id="experience"
       className="px-5 py-16 text-[#1a1714] sm:px-8 lg:px-[7vw] lg:py-24"
     >
-      <div className="mx-auto grid max-w-295 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <div className="mx-auto grid max-w-295 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
         <div>
           <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-bold leading-[1.15] tracking-[-0.03em] underline decoration-[#ff4d00] decoration-[3px] underline-offset-[6px] [text-decoration-skip-ink:none]">
             My experience

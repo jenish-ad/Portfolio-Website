@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaPaperPlane,
-} from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedinIn, FaPaperPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { site } from "@/lib/site";
 
@@ -19,168 +14,94 @@ const socialIcons = {
 const fieldClass =
   "w-full rounded-md border border-[#1a1714]/10 bg-white/70 px-4 text-[14px] font-medium text-[#1a1714] outline-none transition placeholder:text-[#1a1714]/35 focus:border-[#ff4d00]/80 focus:bg-white";
 
+const fields = [
+  { name: "name", label: "Name", type: "text", half: true },
+  { name: "email", label: "Email", type: "email", half: true },
+  { name: "subject", label: "Subject", type: "text" },
+  { name: "message", label: "Message" },
+];
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
+  const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+    const form = e.currentTarget;
+    setSending(true);
     setStatus("");
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(form))),
+    }).catch(() => null);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Something went wrong.");
-      }
-
+    if (res?.ok) {
       setStatus("Message sent successfully.");
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch {
+      form.reset();
+    } else {
       setStatus("Message could not be sent. Please try again.");
-    } finally {
-      setLoading(false);
     }
+    setSending(false);
   }
 
   return (
     <section
       id="contact"
-      className="relative min-h-screen scroll-mt-13 overflow-hidden px-5 pb-24 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-10 lg:pt-6"
+      className="relative scroll-mt-13 overflow-hidden px-5 pb-28 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-16 lg:pt-6"
     >
       <div className="pointer-events-none absolute right-0 top-20 h-85 w-85 rounded-full bg-[#ff4d00]/8 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-262.5">
-        <div className="mb-7 text-center">
+        <div className="mb-6 text-center">
           <h2 className="text-3xl font-black uppercase tracking-[-0.04em] text-[#1a1714] sm:text-4xl">
             Contact
           </h2>
 
           <div className="mx-auto mt-2 h-0.75 w-38 bg-[#ff4d00]" />
 
-          <p className="mx-auto mt-3 max-w-140 text-[15px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
+          <p className="mx-auto mt-3 max-w-140 text-[14px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/70">
             Open to full-stack roles, thoughtful projects, and collaborations
             focused on clean design, reliable systems, and practical
             engineering.
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-250 gap-6 lg:grid-cols-[1.25fr_0.95fr]">
+        <div className="mx-auto grid max-w-225 gap-5 lg:grid-cols-[1.3fr_1fr]">
           <div>
             <div className="rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
-              <div className="mb-5">
-                <h3 className="text-[22px] font-semibold tracking-[-0.04em] text-[#1a1714]">
-                  Send a Message
-                </h3>
-              </div>
+              <h3 className="mb-4 text-[20px] font-semibold tracking-[-0.04em] text-[#1a1714]">
+                Send a Message
+              </h3>
 
-              <form
-                id="contact-form"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-              >
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div>
-                    <label htmlFor="contact-name" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
-                      Name
+              <form id="contact-form" onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-2">
+                {fields.map(({ name, label, type, half }) => (
+                  <div key={name} className={half ? "" : "sm:col-span-2"}>
+                    <label
+                      htmlFor={`contact-${name}`}
+                      className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75"
+                    >
+                      {label}
                     </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className={`h-11 ${fieldClass}`}
-                    />
+                    {type ? (
+                      <input id={`contact-${name}`} name={name} type={type} required className={`h-10 ${fieldClass}`} />
+                    ) : (
+                      <textarea id={`contact-${name}`} name={name} rows="3" required className={`resize-none py-2.5 ${fieldClass}`} />
+                    )}
                   </div>
-
-                  <div>
-                    <label htmlFor="contact-email" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
-                      Email
-                    </label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className={`h-11 ${fieldClass}`}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="contact-subject" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
-                    Subject
-                  </label>
-                  <input
-                    id="contact-subject"
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={`h-11 ${fieldClass}`}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.04em] text-[#1a1714]/75">
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    rows="4"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className={`resize-none py-3 ${fieldClass}`}
-                  />
-                </div>
+                ))}
               </form>
             </div>
 
             <button
               type="submit"
               form="contact-form"
-              disabled={loading}
-              className="group mt-3 flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-[#1a1714] shadow-none transition duration-300 hover:bg-[#ff4d00] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 sm:h-10 sm:w-fit"
+              disabled={sending}
+              className="group mt-3 flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#ff4d00] bg-[#ff4d00]/5 px-5 text-sm font-bold text-[#1a1714] transition duration-300 hover:bg-[#ff4d00] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 sm:h-10 sm:w-fit"
             >
               <FaPaperPlane className="text-sm text-[#ff4d00] transition group-hover:text-white" />
-              {loading ? "Sending..." : "Send"}
+              {sending ? "Sending..." : "Send"}
             </button>
 
             {status && (
@@ -190,54 +111,41 @@ export default function Contact() {
             )}
           </div>
 
-          <div>
-            <div className="rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
-              <div className="mb-4 flex items-center gap-3">
-                <MdOutlineEmail className="text-2xl text-[#1a1714]" />
-                <h3 className="text-[22px] font-semibold tracking-[-0.04em] text-[#1a1714]">
-                  Get In Touch
-                </h3>
-              </div>
-
-              <a
-                href={`mailto:${site.email}`}
-                className="text-[15px] font-semibold tracking-[-0.01em] text-[#1a1714] transition hover:text-[#ff4d00]"
-              >
-                {site.email}
-              </a>
-
-              <p className="mt-5 max-w-92.5 text-[14px] font-medium leading-7 tracking-[-0.01em] text-[#1a1714]/70">
-                I build clean, practical web interfaces and data-driven systems.
-                For roles, collaborations, or project discussions, reach out
-                anytime.
-              </p>
+          <div className="h-fit rounded-xl border border-[#1a1714]/15 bg-white/50 p-5">
+            <div className="mb-3 flex items-center gap-3">
+              <MdOutlineEmail className="text-2xl text-[#1a1714]" />
+              <h3 className="text-[20px] font-semibold tracking-[-0.04em] text-[#1a1714]">
+                Get In Touch
+              </h3>
             </div>
 
-            <div className="mt-6">
-              <h4 className="mb-3 text-[21px] font-semibold tracking-[-0.04em] text-[#1a1714]">
-                Connect Online
-              </h4>
+            <a
+              href={`mailto:${site.email}`}
+              className="text-[15px] font-semibold tracking-[-0.01em] text-[#1a1714] transition hover:text-[#ff4d00]"
+            >
+              {site.email}
+            </a>
 
-              <div className="space-y-2.5">
-                {site.socials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-10 w-fit min-w-37.5 items-center gap-3 rounded-lg border border-[#1a1714]/15 bg-white/40 px-4 text-[#1a1714] transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
-                  >
-                    <span className="text-lg text-[#1a1714]">{socialIcons[social.name]}</span>
-                    <span className="text-[14px] font-semibold tracking-[-0.01em]">
-                      {social.name}
-                    </span>
-                  </a>
-                ))}
-              </div>
+            <p className="mt-3 text-[14px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/70">
+              For roles, collaborations, or project discussions, reach out
+              anytime.
+            </p>
 
-              <p className="mt-4 max-w-90 text-[13px] font-medium leading-6 tracking-[-0.01em] text-[#1a1714]/60">
-                View my work, follow updates, or connect directly.
-              </p>
+            <div className="mt-5 flex flex-wrap gap-2 border-t border-[#1a1714]/10 pt-5">
+              {site.socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-9 items-center gap-1.5 rounded-lg border border-[#1a1714]/15 bg-white/40 px-2.5 text-[#1a1714] transition duration-300 hover:border-[#ff4d00] hover:bg-[#ff4d00]/5"
+                >
+                  <span className="text-base">{socialIcons[social.name]}</span>
+                  <span className="text-[13px] font-semibold tracking-[-0.01em]">
+                    {social.name}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

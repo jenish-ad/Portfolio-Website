@@ -20,22 +20,11 @@ export default function Navbar() {
     }
   }, []);
 
-  const scrollToSection = (e, id) => {
+  const goTo = (e, id) => {
     e.preventDefault();
+    if (id === "about") return setAboutOpen(true);
 
-    if (id === "about") {
-      setAboutOpen(true);
-      return;
-    }
-
-    const section = document.getElementById(id);
-    if (!section) return;
-
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     // Keep the URL clean instead of leaving #section in it
     window.history.replaceState(null, "", window.location.pathname);
   };
@@ -47,7 +36,7 @@ export default function Navbar() {
       <div className="relative z-10 flex w-full items-center justify-between px-5 py-4 lg:px-10 lg:py-5">
         <a
           href="#home"
-          onClick={(e) => scrollToSection(e, "home")}
+          onClick={(e) => goTo(e, "home")}
           className="text-lg font-bold tracking-[-0.08em] lg:text-2xl"
         >
           JENISH ADHIKARI
@@ -59,7 +48,7 @@ export default function Navbar() {
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                onClick={(e) => scrollToSection(e, link.id)}
+                onClick={(e) => goTo(e, link.id)}
                 className="group relative whitespace-nowrap transition-colors hover:text-[#ff4d00]"
               >
                 {link.label}
@@ -72,7 +61,7 @@ export default function Navbar() {
             href="/Jenish_Adhikari_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer rounded-lg px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1a1714] transition-colors hover:text-[#ff4d00] lg:px-3 lg:py-3 lg:text-[12px] lg:tracking-[0.32em]"
+            className="rounded-lg px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1a1714] transition-colors hover:text-[#ff4d00] lg:px-3 lg:py-3 lg:text-[12px] lg:tracking-[0.32em]"
           >
             <span className="relative inline-block pb-1">
               RESUME
@@ -80,12 +69,7 @@ export default function Navbar() {
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 h-0.75 w-[calc(100%-0.2em)] bg-[#ff4d00] lg:w-[calc(100%-0.32em)]"
                 animate={{ opacity: [1, 1, 0, 0] }}
-                transition={{
-                  duration: 1.1,
-                  times: [0, 0.5, 0.5, 1],
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+                transition={{ duration: 1.1, times: [0, 0.5, 0.5, 1], repeat: Infinity, ease: "linear" }}
               />
             </span>
           </a>
