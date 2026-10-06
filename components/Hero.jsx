@@ -34,7 +34,6 @@ export default function Hero() {
       <HelloCard
         className="mx-auto mb-6 lg:hidden"
         frameClassName="h-[32svh] max-h-100 min-h-44 w-[86vw] max-w-85"
-        sizes="(max-width: 1023px) 86vw, 0px"
       />
 
       <div className="relative z-10 w-full">

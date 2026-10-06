@@ -2,7 +2,7 @@ import Image from "next/image";
 
 // The waving GIF card. Hero shows it above the text on small screens,
 // Home shows it beside the text on desktop.
-export default function HelloCard({ className, frameClassName, sizes }) {
+export default function HelloCard({ className, frameClassName }) {
   return (
     <figure className={className}>
       <div
@@ -16,7 +16,6 @@ export default function HelloCard({ className, frameClassName, sizes }) {
             loading="eager"
             fetchPriority="high"
             unoptimized
-            sizes={sizes}
             className="object-cover object-top contrast-125 brightness-90"
           />
         </div>

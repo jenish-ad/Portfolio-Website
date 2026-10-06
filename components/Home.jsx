@@ -14,7 +14,6 @@ export default function Home() {
         <HelloCard
           className="hidden self-center justify-self-end lg:block"
           frameClassName="h-98 w-85 xl:h-105 xl:w-95 2xl:h-110 2xl:w-102.5"
-          sizes="(max-width: 1279px) 340px, (max-width: 1535px) 380px, 410px"
         />
       </section>
     </div>

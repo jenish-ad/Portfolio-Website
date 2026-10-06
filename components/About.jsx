@@ -31,7 +31,6 @@ export default function About({ open, onClose }) {
             alt="Waving animation"
             fill
             unoptimized
-            sizes="(max-width: 767px) 100vw, 400px"
             className="object-cover object-center contrast-125 brightness-90"
           />
         </div>

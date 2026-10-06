@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaGithub, FaInstagram, FaLinkedinIn, FaPaperPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { site } from "@/lib/site";
+import EnvelopeBurst from "./EnvelopeBurst";
 
 const socialIcons = {
   GitHub: <FaGithub />,
@@ -49,9 +50,10 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-13 overflow-hidden px-5 pb-28 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-16 lg:pt-6"
+      className="relative scroll-mt-13 overflow-x-clip px-5 pb-28 pt-12 text-[#1a1714] sm:px-8 lg:scroll-mt-19 lg:pb-16 lg:pt-6"
     >
       <div className="pointer-events-none absolute right-0 top-20 h-85 w-85 rounded-full bg-[#ff4d00]/8 blur-[120px]" />
+      <EnvelopeBurst />
 
       <div className="relative z-10 mx-auto max-w-262.5">
         <div className="mb-6 text-center">

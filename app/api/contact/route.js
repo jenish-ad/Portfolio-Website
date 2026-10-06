@@ -5,7 +5,7 @@ const escape = (value) =>
   String(value).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 export async function POST(request) {
-  const { name, email, subject, message } = await request.json();
+  const { name, email, subject, message } = await request.json().catch(() => ({}));
 
   if (!name || !email || !subject || !message) {
     return Response.json({ error: "All fields are required." }, { status: 400 });
@@ -15,7 +15,7 @@ export async function POST(request) {
   }
 
   try {
-    await new Resend(process.env.RESEND_API_KEY).emails.send({
+    const { error } = await new Resend(process.env.RESEND_API_KEY).emails.send({
       from: "Jenish Portfolio <onboarding@resend.dev>",
       to: site.email,
       replyTo: email,
@@ -30,6 +30,7 @@ export async function POST(request) {
         </div>
       `,
     });
+    if (error) throw error;
     return Response.json({ message: "Message sent." });
   } catch (error) {
     console.error("Contact form error:", error);

@@ -89,16 +89,15 @@ export default function Projects() {
               rel="noopener noreferrer"
               tabIndex={-1}
               aria-hidden="true"
-              className="relative mt-auto block aspect-[16/10] overflow-hidden rounded-xl border border-[#1a1714]/10 bg-white/60"
+              className="relative mt-auto block aspect-16/10 overflow-hidden rounded-xl border border-[#1a1714]/10 bg-white/60"
             >
               <Image
                 src={project.image}
                 alt={`${project.title} screenshot`}
                 fill
-                loading="eager"
                 quality={90}
                 sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1279px) 45vw, 520px"
-                className="object-cover object-left-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                className="object-cover object-top-left transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
               />
             </a>
           </article>

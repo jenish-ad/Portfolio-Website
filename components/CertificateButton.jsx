@@ -16,9 +16,9 @@ export default function CertificateButton({ src, title }) {
         onClick={() => setOpen(true)}
         aria-label={`View ${title}`}
         title="View certificate"
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-[#1a1714]/70 transition-colors hover:bg-[#1a1714] hover:text-[#f3ede4]"
+        className="relative flex h-10 w-10 shrink-0 items-center justify-center self-start rounded-full bg-white/15 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#1a1714]"
       >
-        <TbCertificate aria-hidden="true" className="text-[26px]" />
+        <TbCertificate aria-hidden="true" className="text-[22px]" />
       </button>
 
       <Modal
@@ -31,7 +31,7 @@ export default function CertificateButton({ src, title }) {
           type="button"
           onClick={close}
           aria-label="Close certificate"
-          className="absolute -right-3 -top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#f3ede4] text-2xl leading-none text-[#1a1714]/70 shadow-lg transition-colors hover:text-[#ff4d00]"
+          className="absolute -right-3 -top-3 z-10 flex h-9 w-9 items-center justify-center self-start rounded-full bg-[#f3ede4] text-2xl leading-none text-[#1a1714]/70 shadow-lg transition-colors hover:text-[#ff4d00]"
         >
           ×
         </button>
