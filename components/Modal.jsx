@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 
 // Shared pop-up shell: dimmed backdrop, fade/slide animation,
 // closes on Escape or backdrop click, and locks page scroll while open.
+// Rendered into <body> so a transformed or clipped parent (e.g. a hovered card) can't trap it.
 export default function Modal({ open, onClose, className, children, ...dialogProps }) {
   useEffect(() => {
     if (!open) return;
@@ -23,7 +25,9 @@ export default function Modal({ open, onClose, className, children, ...dialogPro
     };
   }, [open, onClose]);
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -49,6 +53,7 @@ export default function Modal({ open, onClose, className, children, ...dialogPro
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
